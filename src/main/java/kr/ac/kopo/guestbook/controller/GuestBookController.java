@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class GuestBookController {
 
     @GetMapping({"/", "/list"})
-    public String lisy(){
+    public String list(){
         return "/guestbook/list";
     }
 }
