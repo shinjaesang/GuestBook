@@ -67,7 +67,7 @@ public class GuestbookRepositoryTests {
     public void testQuery2(){
         Pageable pageable = PageRequest.of(0, 10, Sort.by("gno").descending());
         QGuestbook qGuestbook = QGuestbook.guestbook;
-        String keyword = "2";
+        String keyword = "1";
         BooleanBuilder builder = new BooleanBuilder();
         BooleanExpression ex1 = qGuestbook.title.contains(keyword);
         BooleanExpression ex2 = qGuestbook.content.contains(keyword);
