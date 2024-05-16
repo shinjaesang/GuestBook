@@ -1,9 +1,14 @@
 package kr.ac.kopo.guestbook.service;
 
 import kr.ac.kopo.guestbook.dto.GuestbookDTO;
+import kr.ac.kopo.guestbook.dto.PageRequestDTO;
+import kr.ac.kopo.guestbook.dto.PageResultDTO;
+import kr.ac.kopo.guestbook.entity.Guestbook;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 @SpringBootTest
 public class GuestServiceTests {
@@ -20,6 +25,30 @@ public class GuestServiceTests {
                 .build();
 
         service.register(guestbookDTO);
+    }
+
+    @Test
+    public void testList(){
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+                .page(25)
+                .size(10)
+                .build();
+
+        PageResultDTO<GuestbookDTO, Guestbook> resultDTO = service.getList(pageRequestDTO);
+        List<GuestbookDTO> list = resultDTO.getDtoList();
+
+        System.out.println("start: " + resultDTO.getStart());
+        System.out.println("end: " + resultDTO.getEnd());
+        System.out.println("previous: " + resultDTO.isPrev());
+        System.out.println("next: " + resultDTO.isNext());
+
+        for (GuestbookDTO guestbookDTO : list){
+            System.out.println(guestbookDTO);
+        }
+
+        for(Integer pageNum : resultDTO.getPagelist()){
+            System.out.println(pageNum.intValue());
+        }
     }
 
 }
