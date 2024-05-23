@@ -21,7 +21,7 @@ public class GuestServiceTests {
         GuestbookDTO guestbookDTO = GuestbookDTO.builder()
                 .title("등록 연습 title 1")
                 .content("등록 연습 content 1")
-                .wrtier("등록 연습 writer 1")
+                .writer("등록 연습 writer 1")
                 .build();
 
         service.register(guestbookDTO);
@@ -46,7 +46,7 @@ public class GuestServiceTests {
             System.out.println(guestbookDTO);
         }
 
-        for(Integer pageNum : resultDTO.getPagelist()){
+        for(Integer pageNum : resultDTO.getPageList()){
             System.out.println(pageNum.intValue());
         }
     }
