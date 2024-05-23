@@ -17,7 +17,7 @@ public interface GuestbookService {//    글등록 기능
                 .gno(dto.getGno())
                 .title(dto.getTitle())
                 .content(dto.getContent())
-                .writer(dto.getWrtier())
+                .writer(dto.getWriter())
                 .build();
         return entity;
     }
@@ -27,7 +27,7 @@ public interface GuestbookService {//    글등록 기능
                 .gno(entity.getGno())
                 .title(entity.getTitle())
                 .content(entity.getContent())
-                .wrtier(entity.getWriter())
+                .writer(entity.getWriter())
                 .regDate(entity.getRegDate())
                 .modDate(entity.getModDate())
                 .build();

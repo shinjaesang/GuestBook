@@ -32,7 +32,7 @@ public class PageResultDTO<DTO, EN> {
     private boolean prev, next;
 
     //한화면에 보여질 페이지 번호 목록이 저장
-    private  List<Integer> pagelist;
+    private  List<Integer> pageList;
     
     public PageResultDTO(Page<EN> result, Function<EN, DTO> fn){
         //매개변수로 전달 받은 결과행들과 entity를 dto로 변환한 fn을 사용해서 GuestbookDTO객체를 저장한 리스트
@@ -59,6 +59,6 @@ public class PageResultDTO<DTO, EN> {
 
         next = totalPage > tempEnd;//1~마지막 바로 전화면까지 true
 
-        pagelist = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
+        pageList = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
     }
 }
