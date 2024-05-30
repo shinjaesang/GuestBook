@@ -9,7 +9,15 @@
 
 <th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
     <th:block th:fragment="content">
-        <h1>GuestBook List Page</h1>
+        <h1 class="mt-4">GuestBook List Page
+            <span>
+                <a th:href="@{/guestbook/register}">
+                    <button type="button" class="btn btn-outline-primary">Register</button>
+                </a>
+            </span>
+
+
+        </h1>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -22,7 +30,12 @@
             <tbody>
             <tr th:each="dto : ${result.dtoList}">
                 <th scope="row">[[${dto.gno}]]</th>
-                <td>[[${dto.title}]]</td>
+                <td>
+                    <a th:href="@{/guestbook/read(gno = ${dto.gno}, page = ${result.page})}">
+                        [[${dto.title}]]
+                    </a>
+
+                </td>
                 <td>[[${dto.writer}]]</td>
                 <td>[[${#temporals.format(dto.regDate, 'yyyy/MM/dd')}]]</td>
             </tr>
