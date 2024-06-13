@@ -23,11 +23,11 @@
             </div>
             <div class="form-group">
                 <label>RegDate:</label>
-                <input type="text" name="regDate" class="form-control" th:value="${#temporals.format(dto.regDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+                <input type="text" name="regDate" class="form-control" th:value="${dto.regDate}" readonly>
             </div>
             <div class="form-group">
                 <label>ModifyDate:</label>
-                <input type="text" name="modDate" class="form-control" th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+                <input type="text" name="modDate" class="form-control" th:value="${dto.modDate}" readonly>
             </div>
         </form>
 
