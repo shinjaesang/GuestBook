@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/guestbook")
 @RequiredArgsConstructor
-public class GuestBookController {
+public class GuestbookController {
     private final GuestbookService service;
 
     @GetMapping("/")
@@ -24,11 +24,10 @@ public class GuestBookController {
         return "redirect:/guestbook/list";
     }
 
-    @GetMapping({"/list"})
+    @GetMapping({ "/list"})
     public void list(PageRequestDTO pageRequestDTO, Model model){
-        //list.html(View계층)에 방명록 목록과 화면에 보여질 때 필요한 페이지 번호들 등의 정보가 저장
+//        list.html(View계층)에 방명록 목록과 화면에 보여질때 필요한 페이지번호들 등의 정보를 전달
         model.addAttribute("result", service.getList(pageRequestDTO));
-
     }
 
     @GetMapping("/register")
@@ -38,15 +37,30 @@ public class GuestBookController {
 
     @PostMapping("/register")
     public String registerPost(GuestbookDTO dto, RedirectAttributes redirectAttributes){
-        //새호 추가된 엔티티의 번호
         Long gno = service.register(dto);
         redirectAttributes.addFlashAttribute("msg", gno);
         return "redirect:/guestbook/list";
     }
 
-    @GetMapping("/read")
-    public void read(long gno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model){
+    @GetMapping({"/read", "/modify"})
+    public void read(Long gno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model){
         GuestbookDTO dto = service.read(gno);
         model.addAttribute("dto", dto);
+    }
+
+    @PostMapping("/remove")
+    public String remove(long gno, RedirectAttributes redirectAttributes){
+        service.remove(gno);
+        redirectAttributes.addFlashAttribute("msg", gno);
+
+        return "redirect:/guestbook/list";
+    }
+
+    @PostMapping("/modify")
+    public String modify(GuestbookDTO dto, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, RedirectAttributes redirectAttributes){
+        service.modify(dto);
+        redirectAttributes.addAttribute("page", requestDTO.getPage());
+        redirectAttributes.addAttribute("gno", dto.getGno());
+        return "redirect:/guestbook/read";
     }
 }

@@ -12,10 +12,10 @@ import lombok.*;
 public class Guestbook extends BaseEntity{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//1씩 자동 증가
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long gno;
 
-    @Column(length = 100, nullable = false)//byte단위
+    @Column(length = 100, nullable = false)
     private String title;
 
     @Column(length = 1500, nullable = false)
