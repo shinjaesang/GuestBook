@@ -30,10 +30,13 @@
                 <input type="text" name="modDate" class="form-control" th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
             </div>
         </form>
-        <button type="button" class="btn btn-primary form-group">Modify</button>
+
+        <button type="button" class="btn btn-primary modifyBtn">Modify</button>
+
         <a th:href="@{/guestbook/list(page=${requestDTO.page})}">
             <button type="button" class="btn btn-info form-group">List</button>
         </a>
+
         <button type="button" class="btn btn-danger removeBtn">Remove</button>
     </th:block>
 </th:block>
